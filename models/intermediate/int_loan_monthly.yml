@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: int_loan_monthly
+    description: "Monthly loan-level table joining performance + acquisition."
+
+    columns:
+      - name: loan_sequence_number
+        tests:
+          - not_null
+
+      - name: monthly_reporting_period
+        tests:
+          - not_null
+
+      - name: credit_score
+        description: "From acquisition; should be present for almost all loans after join."
+        tests:
+          - not_null
