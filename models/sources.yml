@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: raw_fintech
+    database: fintech-ae-platform
+    schema: raw_fintech
+    tables:
+      - name: freddie_acquisition_raw
+        description: "Freddie Mac acquisition file loaded raw into BigQuery (pipe-delimited upload)."
+
+      - name: freddie_performance_raw
+        description: "Freddie Mac monthly performance file loaded raw into BigQuery (pipe-delimited upload)."
