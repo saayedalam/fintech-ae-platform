@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: fct_delinquency_monthly
+    description: "Monthly delinquency rate by state and channel."
+
+    columns:
+      - name: delinquency_rate
+        description: "Share of loan-months with delinquency_status > 0."
+        tests:
+          - not_null
+
+      - name: monthly_reporting_period
+        tests:
+          - not_null
