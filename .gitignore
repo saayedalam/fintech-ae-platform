@@ -1,0 +1,10 @@
+# macOS
+.DS_Store
+
+# Python
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+
+# Raw data (never commit)
+ingestion/data/raw/
