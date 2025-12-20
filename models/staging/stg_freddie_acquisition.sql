@@ -1,5 +1,3 @@
-{{ config(materialized='view') }}
-
 with src as (
   select * from {{ source('raw_fintech', 'freddie_acquisition_raw') }}
 )

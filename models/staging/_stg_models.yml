@@ -3,10 +3,11 @@ version: 2
 models:
   - name: stg_freddie_acquisition
     description: "Staged Freddie Mac acquisition data with typed fields and standardized column names (1 row per loan)."
-    tags: ["staging", "fintech", "freddie_mac", "acquisition"]
-    meta:
-      domain: "mortgage"
-      grain: "loan"
+    config: 
+     tags: ["staging", "fintech", "freddie_mac", "acquisition"] 
+     meta:
+       domain: "mortgage"
+       grain: "loan"
     columns:
       - name: loan_sequence_number
         description: "Unique loan identifier (business key)."
@@ -22,10 +23,11 @@ models:
 
   - name: stg_freddie_performance
     description: "Staged Freddie Mac monthly performance at loan-month grain (1 row per loan per reporting period)."
-    tags: ["staging", "fintech", "freddie_mac", "performance"]
-    meta:
-      domain: "mortgage"
-      grain: "loan_month"
+    config:
+     tags: ["staging", "fintech", "freddie_mac", "performance"]
+     meta:
+       domain: "mortgage"
+       grain: "loan_month"
     columns:
       - name: loan_sequence_number
         description: "Loan identifier (joins to acquisition)."
@@ -41,11 +43,12 @@ models:
 
   - name: stg_mortgage_rates
     description: "Staged monthly mortgage rates from FRED with standardized column names."
-    tags: ["staging", "macro", "fred"]
-    meta:
-      domain: "macro"
-      grain: "month"
-      source_series: "MORTGAGE30US"
+    config: 
+     tags: ["staging", "macro", "fred"] 
+     meta:
+       domain: "macro"
+       grain: "month"
+       source_series: "MORTGAGE30US"
     columns:
       - name: month
         description: "Observation month (from FRED)."
