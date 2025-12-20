@@ -10,14 +10,7 @@ final as (
     select
         reporting_month,
 
-        case
-            when credit_score is null then 'unknown'
-            when credit_score < 620 then '<620'
-            when credit_score between 620 and 679 then '620-679'
-            when credit_score between 680 and 739 then '680-739'
-            when credit_score >= 740 then '740+'
-            else 'unknown'
-        end as credit_score_band,
+        {{ credit_score_band('credit_score') }} as credit_score_band,
 
         count(*) as loan_months,
         sum(is_current) as current_count,
