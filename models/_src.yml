@@ -1,0 +1,73 @@
+version: 2
+
+sources:
+  - name: raw_fintech
+    database: fintech-ae-platform
+    schema: raw_fintech
+    description: "Raw Freddie Mac mortgage data loaded into BigQuery."
+    config: 
+     tags: ["raw", "fintech", "freddie_mac"]
+     meta:
+       domain: "mortgage"
+       owner: "analytics_engineering"
+    tables:
+      - name: freddie_acquisition_raw
+        description: "Freddie Mac acquisition file loaded raw into BigQuery (pipe-delimited)."
+        config: 
+         tags: ["acquisition"]
+         meta:
+           grain: "1 row per loan (intended)"
+           notes: "Raw table uses auto-generated column names (e.g., int64_field_0)."
+        columns:
+          - name: int64_field_0
+            description: "Loan sequence number (raw position 0). Primary join key to performance."
+            tests:
+              - not_null
+
+      - name: freddie_performance_raw
+        description: "Freddie Mac monthly performance file loaded raw into BigQuery (pipe-delimited)."
+        config: 
+         tags: ["performance"]
+         meta:
+           grain: "1 row per loan per month (intended)"
+           notes: "Raw table uses auto-generated column names; key fields are documented below."
+        columns:
+          - name: string_field_0
+            description: "Loan sequence number (raw position 0). Join key to acquisition."
+            tests:
+              - not_null
+
+          - name: int64_field_1
+            description: "Monthly reporting period in YYYYMM format (raw position 1)."
+            tests:
+              - not_null
+
+  - name: raw_macro
+    schema: raw_macro
+    description: "Raw macroeconomic reference data loaded into BigQuery (external sources)."
+    config:
+     tags: ["raw", "macro"]
+     meta:
+       external_provider: "FRED"
+       series_id: "MORTGAGE30US"
+    tables:
+      - name: mortgage_rates_raw
+        description: "Monthly 30-year fixed mortgage rate from FRED."
+        config:
+         loaded_at_field: cast(observation_date as timestamp)
+         freshness:
+           warn_after: {count: 180, period: day}
+           error_after: {count: 365, period: day}
+         meta:
+           frequency: "monthly"
+        columns:
+          - name: observation_date
+            description: "Observation month (as provided by FRED)."
+            tests:
+              - not_null
+              - unique
+
+          - name: MORTGAGE30US
+            description: "30-year fixed mortgage rate (%)."
+            tests:
+              - not_null

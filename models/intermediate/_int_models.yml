@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: int_loan_monthly
+    description: "Loan-month base table joining Freddie Mac performance + acquisition, enriched with macro mortgage rates."
+    config:
+      tags: ["intermediate", "fintech", "mortgage"]
+      meta:
+        grain: "loan_month"
+
+    columns:
+      - name: loan_sequence_number
+        description: "Unique loan identifier."
+        tests:
+          - not_null
+
+      - name: monthly_reporting_period
+        description: "Performance month in YYYYMM format."
+        tests:
+          - not_null
+
+      - name: credit_score
+        description: "Borrower credit score from acquisition (join integrity check)."
+        tests:
+          - not_null
+
+      - name: mortgage_rate_30y
+        description: "Monthly 30-year fixed mortgage rate from FRED (macro context)."
