@@ -1,0 +1,17 @@
+version: 2
+
+exposures:
+  - name: delinquency_dashboard
+    type: dashboard
+    maturity: medium
+    url: https://example.com/bi/delinquency
+    description: >
+      BI dashboard tracking delinquency rate over time by state and channel.
+      Primary stakeholder view for credit risk monitoring.
+
+    owner:
+      name: Saayed Alam
+      email: saayed@example.com
+
+    depends_on:
+      - ref('fct_delinquency_monthly')
