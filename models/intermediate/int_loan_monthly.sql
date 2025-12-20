@@ -1,5 +1,3 @@
-{{ config(materialized='view') }}
-
 select
   p.loan_sequence_number,
   p.monthly_reporting_period,
@@ -16,7 +14,10 @@ select
   a.property_type,
   a.channel,
   a.seller_name,
-  a.servicer_name
+  a.servicer_name,
+  r.mortgage_rate_30y
 from {{ ref('stg_freddie_performance') }} p
 left join {{ ref('stg_freddie_acquisition') }} a
   on p.loan_sequence_number = a.loan_sequence_number
+left join {{ ref('stg_mortgage_rates') }} r
+  on parse_date('%Y%m', cast(p.monthly_reporting_period as string)) = r.month
