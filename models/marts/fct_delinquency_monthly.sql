@@ -1,12 +1,19 @@
-{{ config(materialized='table') }}
-
 select
-  monthly_reporting_period,
-  property_state,
-  channel,
-  count(*) as loan_months,
-  countif(current_loan_delinquency_status = 0) as current_count,
-  countif(current_loan_delinquency_status > 0) as delinquent_count,
-  safe_divide(countif(current_loan_delinquency_status > 0), count(*)) as delinquency_rate
-from {{ ref('int_loan_monthly') }}
+    reporting_month,
+    property_state,
+    channel,
+
+    count(*) as loan_months,
+
+    sum(is_current)     as current_count,
+    sum(is_delinquent)  as delinquent_count,
+
+    safe_divide(
+        sum(is_delinquent),
+        count(*)
+    ) as delinquency_rate,
+
+    avg(mortgage_rate_30y) as avg_mortgage_rate_30y
+
+from {{ ref('int_delinquency_flags_monthly') }}
 group by 1, 2, 3

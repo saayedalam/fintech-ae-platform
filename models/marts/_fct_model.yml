@@ -1,0 +1,120 @@
+version: 2
+
+models:
+  - name: fct_delinquency_monthly
+    description: >
+      Monthly delinquency metrics by reporting month, property state,
+      and origination channel, enriched with macro mortgage rates.
+    config:
+      tags: ["mart", "fintech", "mortgage"]
+      meta:
+        grain: "month_state_channel"
+
+    columns:
+      - name: reporting_month
+        description: "Calendar month for aggregation."
+        tests:
+          - not_null
+
+      - name: property_state
+        description: "US state where the property is located."
+        tests:
+          - not_null
+
+      - name: channel
+        description: "Origination channel (e.g., retail, broker)."
+        tests:
+          - not_null
+
+      - name: loan_months
+        description: "Total number of loan-month observations in the group."
+
+      - name: current_count
+        description: "Number of loan-months that are current (not delinquent)."
+
+      - name: delinquent_count
+        description: "Number of loan-months that are delinquent."
+
+      - name: delinquency_rate
+        description: "Share of loan-months that are delinquent."
+        tests:
+          - not_null
+
+      - name: avg_mortgage_rate_30y
+        description: "Average 30-year fixed mortgage rate for the month."
+
+
+  - name: fct_delinquency_by_credit_band_monthly
+    description: >
+      Monthly delinquency metrics segmented by borrower credit score band,
+      enriched with macro mortgage rates.
+    config:
+      tags: ["mart", "fintech", "mortgage", "risk"]
+      meta:
+        grain: "month_credit_score_band"
+
+    columns:
+      - name: reporting_month
+        description: "Calendar month for aggregation."
+        tests:
+          - not_null
+
+      - name: credit_score_band
+        description: "Borrower credit score band used for risk segmentation."
+        tests:
+          - not_null
+
+      - name: loan_months
+        description: "Total number of loan-month observations in the segment."
+
+      - name: current_count
+        description: "Number of loan-months that are current (not delinquent)."
+
+      - name: delinquent_count
+        description: "Number of loan-months that are delinquent."
+
+      - name: delinquency_rate
+        description: "Share of loan-months that are delinquent."
+        tests:
+          - not_null
+
+      - name: avg_mortgage_rate_30y
+        description: "Average 30-year fixed mortgage rate for the month."
+
+
+  - name: fct_delinquency_by_servicer_monthly
+    description: >
+      Monthly delinquency metrics by loan servicer, enriched with macro
+      mortgage rates to assess operational performance over time.
+    config:
+      tags: ["mart", "fintech", "mortgage", "operations"]
+      meta:
+        grain: "month_servicer"
+
+    columns:
+      - name: reporting_month
+        description: "Calendar month for aggregation."
+        tests:
+          - not_null
+
+      - name: servicer_name
+        description: "Name of the loan servicer."
+        tests:
+          - not_null
+
+      - name: loan_months
+        description: "Total number of loan-month observations for the servicer."
+
+      - name: current_count
+        description: "Number of loan-months that are current (not delinquent)."
+
+      - name: delinquent_count
+        description: "Number of loan-months that are delinquent."
+
+      - name: delinquency_rate
+        description: "Share of loan-months that are delinquent."
+        tests:
+          - not_null
+
+      - name: avg_mortgage_rate_30y
+        description: "Average 30-year fixed mortgage rate for the month."
