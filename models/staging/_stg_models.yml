@@ -3,26 +3,54 @@ version: 2
 models:
   - name: stg_freddie_acquisition
     description: "Staged Freddie Mac acquisition data with typed fields and standardized column names (1 row per loan)."
+    tags: ["staging", "fintech", "freddie_mac", "acquisition"]
+    meta:
+      domain: "mortgage"
+      grain: "loan"
     columns:
       - name: loan_sequence_number
         description: "Unique loan identifier (business key)."
         tests: [not_null, unique]
+
       - name: first_payment_date
         description: "First scheduled payment date."
         tests: [not_null]
+
       - name: orig_interest_rate
         description: "Original note rate at origination."
         tests: [not_null]
 
   - name: stg_freddie_performance
     description: "Staged Freddie Mac monthly performance at loan-month grain (1 row per loan per reporting period)."
+    tags: ["staging", "fintech", "freddie_mac", "performance"]
+    meta:
+      domain: "mortgage"
+      grain: "loan_month"
     columns:
       - name: loan_sequence_number
         description: "Loan identifier (joins to acquisition)."
         tests: [not_null]
+
       - name: monthly_reporting_period
         description: "Month of performance record."
         tests: [not_null]
+
       - name: current_actual_upb
         description: "Current unpaid principal balance."
+        tests: [not_null]
+
+  - name: stg_mortgage_rates
+    description: "Staged monthly mortgage rates from FRED with standardized column names."
+    tags: ["staging", "macro", "fred"]
+    meta:
+      domain: "macro"
+      grain: "month"
+      source_series: "MORTGAGE30US"
+    columns:
+      - name: month
+        description: "Observation month (from FRED)."
+        tests: [not_null, unique]
+
+      - name: mortgage_rate_30y
+        description: "30-year fixed mortgage rate (%)."
         tests: [not_null]
