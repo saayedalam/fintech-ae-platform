@@ -6,12 +6,21 @@ exposures:
     maturity: medium
     url: https://example.com/bi/delinquency
     description: >
-      BI dashboard tracking delinquency rate over time by state and channel.
-      Primary stakeholder view for credit risk monitoring.
+      BI dashboard for mortgage credit risk monitoring. Tracks delinquency trends
+      over time across geography, borrower risk bands, and servicing performance,
+      with macro mortgage rates for context.
 
     owner:
       name: Saayed Alam
       email: saayed@example.com
 
+    config:
+      tags: ["bi", "dashboard", "risk"]
+      meta:
+        domain: "mortgage_risk"
+        audience: "risk_leadership"
+
     depends_on:
       - ref('fct_delinquency_monthly')
+      - ref('fct_delinquency_by_credit_band_monthly')
+      - ref('fct_delinquency_by_servicer_monthly')
