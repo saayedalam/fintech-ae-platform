@@ -12,7 +12,7 @@ exposures:
 
     owner:
       name: Saayed Alam
-      email: saayed@example.com
+      email: saayedalam@gmail.com
 
     config:
       tags: ["bi", "dashboard", "risk"]
