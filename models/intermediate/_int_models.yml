@@ -13,6 +13,9 @@ models:
         description: "Unique loan identifier."
         tests:
           - not_null
+          - relationships:
+              to: ref('stg_freddie_acquisition')
+              field: loan_sequence_number
 
       - name: monthly_reporting_period
         description: "Performance month in YYYYMM format."
