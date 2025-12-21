@@ -179,12 +179,6 @@ A dbt exposure represents the downstream BI dashboard:
 
 ---
 
-## 🎤 Interview Pitch
-
-“I built an end-to-end analytics engineering platform in dbt Cloud on BigQuery. Raw mortgage and macro data flow through typed staging models, reusable intermediates, and three BI-ready marts, with data quality enforced via tests, freshness checks, and documented exposures.”
-
----
-
 ## 🛣️ Future Enhancements
 
 - Connect Tableau or Looker Studio  
