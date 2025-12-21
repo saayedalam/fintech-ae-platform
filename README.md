@@ -179,14 +179,6 @@ A dbt exposure represents the downstream BI dashboard:
 
 ---
 
-## 🛣️ Future Enhancements
-
-- Connect Tableau or Looker Studio  
-- Schedule deploy jobs  
-- Add additional macroeconomic features  
-
----
-
 ## ⭐ Final Note
 
 This project prioritizes **clarity, correctness, and maintainability**, reflecting real-world analytics engineering judgment.
