@@ -5,9 +5,33 @@
 
 ## 🚀 Overview
 
-This project demonstrates an **end-to-end Analytics Engineering platform** built using **dbt Cloud** and **BigQuery**, focused on **mortgage credit risk analytics**.
+This project demonstrates an **end-to-end Analytics Engineering platform** built using **dbt Cloud, BigQuery, and Power BI**, focused on **mortgage credit risk analytics**.
 
-The goal is to show how raw financial and macroeconomic data can be transformed into **reliable, tested, documented, BI-ready datasets** using modern analytics engineering best practices.
+The goal is to show how raw financial and macroeconomic data can be transformed into **reliable, tested, documented, BI-ready datasets and interactive dashboards** using modern analytics engineering best practices.
+
+---
+
+## 🖼 Screenshots (click to expand)
+
+<details>
+  <summary><strong>📊 Power BI Dashboard</strong></summary>
+
+  <img src="screenshots/powerbi_main_dashboard.png" alt="Main Dashboard"/>
+
+  <img src="screenshots/powerbi_state_filter_ny.png" alt="State Filter Example – NY"/>
+
+</details>
+
+<details>
+  <summary><strong>🧭 dbt DAG & Docs</strong></summary>
+
+  <img src="screenshots/dbt_dag_marts.png" alt="dbt Marts DAG"/>
+
+  <img src="screenshots/dbt_docs_model_page1.png" alt="dbt Model Docs 1"/>
+
+  <img src="screenshots/dbt_docs_model_page2.png" alt="dbt Model Docs 2"/>
+
+</details>
 
 ---
 
@@ -208,29 +232,6 @@ Data sources visualized:
 - Freddie Mac Single-Family Loan-Level dataset  
 - FRED 30-Year Fixed Mortgage Rate (MORTGAGE30US)
 
----
-
-## 🖼 Screenshots (click to expand)
-
-<details>
-  <summary><strong>📊 Power BI Dashboard</strong></summary>
-
-  <img src="screenshots/powerbi_main_dashboard.png" alt="Main Dashboard"/>
-
-  <img src="screenshots/powerbi_state_filter_ny.png" alt="State Filter Example – NY"/>
-
-</details>
-
-<details>
-  <summary><strong>🧭 dbt DAG & Docs</strong></summary>
-
-  <img src="screenshots/dbt_dag_marts.png" alt="dbt Marts DAG"/>
-
-  <img src="screenshots/dbt_docs_model_page1.png" alt="dbt Model Docs 1"/>
-
-  <img src="screenshots/dbt_docs_model_page2.png" alt="dbt Model Docs 2"/>
-
-</details>
 
 ---
 
@@ -243,3 +244,4 @@ Empty dbt template folders (such as `analyses/`, `snapshots/`, or unused `seeds/
 ## ⭐ Final Note
 
 This project prioritizes **clarity, correctness, and maintainability**, reflecting real-world analytics engineering judgment.
+  
