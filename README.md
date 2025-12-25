@@ -1,5 +1,8 @@
 <h1 align="center">🏦 Fintech Analytics Engineering Platform</h1>
-<h2 align="center">dbt Cloud • BigQuery • Power BI • Mortgage Credit Risk</h2>
+
+<p align="center">
+  <strong>dbt Cloud • BigQuery • Power BI • Mortgage Credit Risk</strong>
+</p>
 
 ---
 
@@ -11,25 +14,30 @@ The goal is to show how raw financial and macroeconomic data can be transformed 
 
 ---
 
-## 🖼 Screenshots (click to expand)
+## 🖼 Screenshots
+
+### 📊 Main Power BI Dashboard
+
+![Main Dashboard](screenshots/powerbi_main_dashboard.png)
+
+---
 
 <details>
-  <summary><strong>📊 Power BI Dashboard</strong></summary>
+  <summary><strong>▶️ More screenshots (click to expand)</strong></summary>
 
-  <img src="screenshots/powerbi_main_dashboard.png" alt="Main Dashboard"/>
+#### 🗺️ Power BI – State Filter Example (NY)
 
-  <img src="screenshots/powerbi_state_filter_ny.png" alt="State Filter Example – NY"/>
+![State Filter Example – NY](screenshots/powerbi_state_filter_ny.png)
 
-</details>
+#### 🧭 dbt DAG (Marts Layer)
 
-<details>
-  <summary><strong>🧭 dbt DAG & Docs</strong></summary>
+![dbt Marts DAG](screenshots/dbt_dag_marts.png)
 
-  <img src="screenshots/dbt_dag_marts.png" alt="dbt Marts DAG"/>
+#### 📚 dbt Model Documentation
 
-  <img src="screenshots/dbt_docs_model_page1.png" alt="dbt Model Docs 1"/>
+![dbt Model Docs 1](screenshots/dbt_docs_model_page1.png)
 
-  <img src="screenshots/dbt_docs_model_page2.png" alt="dbt Model Docs 2"/>
+![dbt Model Docs 2](screenshots/dbt_docs_model_page2.png)
 
 </details>
 
