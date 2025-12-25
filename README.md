@@ -247,13 +247,6 @@ Data sources visualized:
 - Freddie Mac Single-Family Loan-Level dataset  
 - FRED 30-Year Fixed Mortgage Rate (MORTGAGE30US)
 
-
----
-
-## 🧹 Repository Cleanup Note
-
-Empty dbt template folders (such as `analyses/`, `snapshots/`, or unused `seeds/`) were intentionally removed to avoid over‑engineering and keep the repository focused on curated marts and BI deliverables.
-
 ---
 
 ## ⭐ Final Note
