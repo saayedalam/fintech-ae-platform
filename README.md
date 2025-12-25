@@ -179,6 +179,67 @@ A dbt exposure represents the downstream BI dashboard:
 
 ---
 
+## 📊 Power BI Dashboard – U.S. Mortgage Delinquency
+
+This project includes a Power BI dashboard that visualizes:
+
+- total loans  
+- delinquent loan counts  
+- delinquency rate over time  
+- lending channels (Broker, Correspondent, Retail)  
+- optional drill-down by U.S. state  
+
+The dashboard is built directly on top of the curated mart:
+
+```
+fct_delinquency_monthly
+```
+
+**Open the dashboard (.pbix)**
+
+Download from:
+
+```
+/power/fintech-ae-powerbi.pbix
+```
+
+Data sources visualized:
+
+- Freddie Mac Single-Family Loan-Level dataset  
+- FRED 30-Year Fixed Mortgage Rate (MORTGAGE30US)
+
+---
+
+## 🖼 Screenshots (click to expand)
+
+<details>
+  <summary><strong>📊 Power BI Dashboard</strong></summary>
+
+  <img src="screenshots/powerbi_main_dashboard.png" alt="Main Dashboard"/>
+
+  <img src="screenshots/powerbi_state_filter_ny.png" alt="State Filter Example – NY"/>
+
+</details>
+
+<details>
+  <summary><strong>🧭 dbt DAG & Docs</strong></summary>
+
+  <img src="screenshots/dbt_dag_marts.png" alt="dbt Marts DAG"/>
+
+  <img src="screenshots/dbt_docs_model_page1.png" alt="dbt Model Docs 1"/>
+
+  <img src="screenshots/dbt_docs_model_page2.png" alt="dbt Model Docs 2"/>
+
+</details>
+
+---
+
+## 🧹 Repository Cleanup Note
+
+Empty dbt template folders (such as `analyses/`, `snapshots/`, or unused `seeds/`) were intentionally removed to avoid over‑engineering and keep the repository focused on curated marts and BI deliverables.
+
+---
+
 ## ⭐ Final Note
 
 This project prioritizes **clarity, correctness, and maintainability**, reflecting real-world analytics engineering judgment.
