@@ -66,6 +66,7 @@ This project simulates how an analytics engineering team would design and operat
 | Source Data | Freddie Mac, FRED |
 | Orchestration | dbt Cloud Deploy Job |
 | Documentation | dbt Cloud Catalog |
+| BI / Visualization | Power BI |
 
 ---
 
@@ -80,7 +81,7 @@ Intermediate (int_)
   ↓
 Marts (fct_)
   ↓
-Exposure (BI Dashboard)
+Exposure (Power BI Dashboard)
 ```
 
 ---
@@ -88,9 +89,15 @@ Exposure (BI Dashboard)
 ## 🗄️ Data Sources
 
 ### Raw Inputs (Loaded Unchanged)
-- Freddie Mac Acquisition Data  
-- Freddie Mac Monthly Performance Data  
-- FRED 30-Year Fixed Mortgage Rate (MORTGAGE30US)
+
+- **Freddie Mac Single-Family Loan-Level Dataset (Acquisition)**  
+  https://www.freddiemac.com/research/dataset/single-family-loan-level-dataset
+
+- **Freddie Mac Single-Family Loan-Level Dataset (Monthly Performance)**  
+  https://www.freddiemac.com/research/dataset/single-family-loan-level-dataset
+
+- **FRED 30-Year Fixed Mortgage Rate (MORTGAGE30US)**  
+  https://fred.stlouisfed.org/series/MORTGAGE30US
 
 Source freshness checks are defined to monitor upstream data availability.
 
