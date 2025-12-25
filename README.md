@@ -1,5 +1,5 @@
 <h1 align="center">🏦 Fintech Analytics Engineering Platform</h1>
-### dbt Cloud • BigQuery • Power BI • Mortgage Credit Risk
+<h2 align="center">dbt Cloud • BigQuery • Power BI • Mortgage Credit Risk</h2>
 
 ---
 
