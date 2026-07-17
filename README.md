@@ -8,9 +8,9 @@
 
 ## 🚀 Overview
 
-This project demonstrates an **end-to-end Analytics Engineering platform** built using **dbt Cloud, BigQuery, and Power BI**, focused on **mortgage credit risk analytics**.
+This portfolio project demonstrates an **end-to-end analytics engineering workflow** built using **dbt Cloud, BigQuery, and Power BI**, focused on **mortgage credit risk analytics**.
 
-The goal is to show how raw financial and macroeconomic data can be transformed into **reliable, tested, documented, BI-ready datasets and interactive dashboards** using modern analytics engineering best practices.
+It shows how raw financial and macroeconomic data can be transformed into **tested, documented, BI-ready datasets and an interactive dashboard** using layered dbt models.
 
 ---
 
@@ -50,7 +50,7 @@ To analyze and monitor this risk effectively, teams need:
 
 - 📊 Consistent loan-level and monthly performance data  
 - 🧮 Clear definitions of delinquency metrics  
-- ✅ Confidence in data quality and freshness  
+- ✅ Confidence in data quality and a clearly defined data snapshot
 - 🔍 Transparent lineage from raw data to business dashboards  
 
 This project simulates how an analytics engineering team would design and operate such a system.
@@ -88,7 +88,7 @@ Exposure (Power BI Dashboard)
 
 ## 🗄️ Data Sources
 
-### Raw Inputs (Loaded Unchanged)
+### Raw Inputs Used for the Project Snapshot
 
 - **Freddie Mac Single-Family Loan-Level Dataset (Acquisition)**  
   https://www.freddiemac.com/research/dataset/single-family-loan-level-dataset
@@ -99,7 +99,11 @@ Exposure (Power BI Dashboard)
 - **FRED 30-Year Fixed Mortgage Rate (MORTGAGE30US)**  
   https://fred.stlouisfed.org/series/MORTGAGE30US
 
-Source freshness checks are defined to monitor upstream data availability.
+The inspection notebook references Freddie Mac's Q1 2025 acquisition and monthly-performance files, while the dashboard presents January through June 2025. The FRED source includes a freshness rule in dbt; the historical Freddie Mac snapshot is static and is not monitored as a live feed.
+
+### Reproducibility Boundary
+
+The repository includes the dbt transformation project, documentation, tests, Power BI file, and screenshots. The raw Freddie Mac files and populated BigQuery source tables are not included. Re-running the project therefore requires obtaining the source data, loading tables matching the declared source schemas, and supplying a dbt profile for BigQuery.
 
 ---
 
@@ -145,14 +149,13 @@ Dimensions are embedded directly to simplify BI usage.
 
 ## ✅ Data Quality & Testing
 
-High-signal data quality checks include:
+The repository includes:
 
 - not_null and unique tests  
-- Relationships test enforcing referential integrity  
 - Singular grain test ensuring loan-month uniqueness  
-- Source freshness checks  
+- A configured freshness rule for the monthly FRED source
 
-All tests run as part of a dbt Cloud deploy job.
+The included dbt Catalog screenshot records 8 successful models and 24 passing tests at project completion. It also records data freshness as unknown, so this repository does not claim active freshness monitoring for the completed snapshot.
 
 ---
 
@@ -164,9 +167,10 @@ A reusable dbt macro standardizes credit score banding logic and is reused acros
 
 ## 📚 Documentation
 
-All models, columns, tests, and exposures are documented in YAML and rendered via **dbt Cloud Catalog**.
+Core models, selected columns, tests, and the Power BI exposure are documented in YAML and rendered via **dbt Cloud Catalog**.
 
 Documentation includes:
+
 - Full lineage graph  
 - Model and column descriptions  
 - Test coverage and results  
@@ -179,13 +183,16 @@ Docs are generated via a deploy job.
 ## 📦 Deployment & Environments
 
 - Development environment for IDE work  
-- Deployment environment for production-style jobs  
+- Deployment environment used for a production-style project run
 
-Deploy job runs:
+The project workflow was designed to run:
+
 - dbt build  
 - tests  
 - source freshness checks  
 - documentation generation  
+
+The dbt Cloud job configuration is not stored in this repository, and the completed historical snapshot is not scheduled for ongoing ingestion.
 
 ---
 
@@ -211,10 +218,13 @@ Deploy job runs:
 
 ## 🔌 Exposure
 
-A dbt exposure represents the downstream BI dashboard:
+A dbt exposure represents the downstream Power BI dashboard:
+
 - Explicit ownership  
 - Business context  
-- Dependencies across marts  
+- A dependency on the mart used by the published dashboard
+
+The credit-band and servicer marts remain available for additional analysis but are not presented as dependencies of the included dashboard.
 
 ---
 
@@ -222,9 +232,9 @@ A dbt exposure represents the downstream BI dashboard:
 
 This project includes a Power BI dashboard that visualizes:
 
-- total loans  
-- delinquent loan counts  
-- delinquency rate over time  
+- loan-month observation volume (shown on the original dashboard as “Total Loans”)
+- delinquent loan-month observations (shown as “Delinquent Loans”)
+- delinquency rate by month
 - lending channels (Broker, Correspondent, Retail)  
 - optional drill-down by U.S. state  
 
@@ -234,13 +244,11 @@ The dashboard is built directly on top of the curated mart:
 fct_delinquency_monthly
 ```
 
-**Open the dashboard (.pbix)**
+### Metric Interpretation
 
-Download from:
+The mart is aggregated from one record per loan per reporting month. A loan can therefore contribute multiple observations across January–June. The dashboard's volume cards should be interpreted as **loan-month observations**, not distinct loans. Delinquency rate is calculated as delinquent loan-month observations divided by total loan-month observations within the selected filters.
 
-```
-/power/fintech-ae-powerbi.pbix
-```
+**[Download the Power BI dashboard (.pbix)](powerbi/fintech-ae-powerbi.pbix)**
 
 Data sources visualized:
 
@@ -252,4 +260,3 @@ Data sources visualized:
 ## ⭐ Final Note
 
 This project prioritizes **clarity, correctness, and maintainability**, reflecting real-world analytics engineering judgment.
-  
