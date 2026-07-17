@@ -20,9 +20,12 @@ sources:
            notes: "Raw table uses auto-generated column names (e.g., int64_field_0)."
         columns:
           - name: int64_field_0
-            description: "Loan sequence number (raw position 0). Primary join key to performance."
+            description: "Borrower credit score (raw position 0)."
             tests:
               - not_null
+
+          - name: string_field_19
+            description: "Loan sequence number (raw position 19). Primary join key to performance."
 
       - name: freddie_performance_raw
         description: "Freddie Mac monthly performance file loaded raw into BigQuery (pipe-delimited)."
