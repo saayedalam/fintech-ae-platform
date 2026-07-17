@@ -4,11 +4,11 @@ exposures:
   - name: delinquency_dashboard
     type: dashboard
     maturity: medium
-    url: https://example.com/bi/delinquency
+    url: https://github.com/saayedalam/fintech-ae-platform/blob/main/powerbi/fintech-ae-powerbi.pbix
     description: >
-      BI dashboard for mortgage credit risk monitoring. Tracks delinquency trends
-      over time across geography, borrower risk bands, and servicing performance,
-      with macro mortgage rates for context.
+      Power BI dashboard summarizing loan-month volume and delinquency rates
+      across reporting month, property state, and origination channel, with
+      mortgage rates available as macroeconomic context.
 
     owner:
       name: Saayed Alam
@@ -22,5 +22,3 @@ exposures:
 
     depends_on:
       - ref('fct_delinquency_monthly')
-      - ref('fct_delinquency_by_credit_band_monthly')
-      - ref('fct_delinquency_by_servicer_monthly')
